@@ -26,3 +26,11 @@ services:
       - "8100:80"
     stdin_open: true
     tty: true
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      - PMA_ARBITRARY=1
+    
