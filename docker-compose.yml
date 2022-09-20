@@ -1,0 +1,28 @@
+# ./docker-compose.yml
+
+version: '3'
+
+services:
+  db:
+    image: mysql:5.7
+    platform: linux/x86_64
+    environment:
+      MYSQL_ROOT_PASSWORD: test
+      MYSQL_ALLOW_EMPTY_PASSWORD: "true"
+      MYSQL_RANDOM_ROOT_PASSWORD: "true"
+      MYSQL_DATABASE: test_db
+      MYSQL_USER: test
+      MYSQL_PASSWORD: test
+    ports:
+      - "9906:3306"
+  web:
+    image: php:5.6.1-apache
+    container_name: taupemeubles
+    depends_on:
+      - db
+    volumes:
+      - .:/var/www/html/
+    ports:
+      - "8100:80"
+    stdin_open: true
+    tty: true
