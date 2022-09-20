@@ -12,7 +12,7 @@ session_start();
 										if(isset($_POST["login"]) && isset($_POST["password"])){
 										  $login = trim(mysqli_real_escape_string($mysqli,$_POST["login"]));
 										  $pass = $_POST["password"];
-										  $str = "SELECT * FROM USERS WHERE LOGIN = '".$login."'";
+										  $str = "SELECT * FROM users WHERE LOGIN = '".$login."'";
 										  $result = query($mysqli,$str) or die ("Impossible de se connection à la base de données<br>");
 											  if(mysqli_num_rows($result)>0){
 													$row = mysqli_fetch_assoc($result);

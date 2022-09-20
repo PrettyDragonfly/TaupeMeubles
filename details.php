@@ -68,7 +68,7 @@
 			}
 		}else if((isset($_SESSION["login"]) && $_SESSION["login"]== 'admin') && isset($_GET["login"])){
 			echo '<h4>Client(e)</h4><hr>';
-			$str = "SELECT LOGIN,EMAIL,PASS,NOM,PRENOM,DATE,SEXE,ADRESSE,CODEP,VILLE,TELEPHONE FROM USERS WHERE LOGIN = '".$_GET["login"]."'";
+			$str = "SELECT LOGIN,EMAIL,PASS,NOM,PRENOM,DATE,SEXE,ADRESSE,CODEP,VILLE,TELEPHONE FROM users WHERE LOGIN = '".$_GET["login"]."'";
 			$result = query($mysqli,$str) or die("Impossible de se connecter");
 			$row = mysqli_fetch_assoc($result);
 				if(is_null($row["LOGIN"])){$login = "";}else{$login = $row["LOGIN"];}

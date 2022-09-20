@@ -7,7 +7,7 @@ session_start();
 								 $mysqli=mysqli_connect($host,$user,$pass) or die("Problème de création de la base :".mysqli_error());
 								 mysqli_select_db($mysqli,$base) or die("Impossible de sélectionner la base : $base");	
 		
-										  $str = "SELECT * FROM USERS WHERE LOGIN = '".$_SESSION["login"]."'";
+										  $str = "SELECT * FROM users WHERE LOGIN = '".$_SESSION["login"]."'";
 										  $result = query($mysqli,$str) or die ("Impossible de faire une connection à base de donnèes<br>");
 										  $row = mysqli_fetch_assoc($result);
 										  if((isset($_POST["emailbdd"]) && empty($_POST["emailbdd"])) || !(isset($_POST["emailbdd"]))){
@@ -142,7 +142,7 @@ session_start();
 										  
 										  $sexe = $_POST["optradio"];
 										  
-										  $str = "UPDATE USERS SET EMAIL = '".$email."', PASS = '".$pass."', NOM ='".$nom."', PRENOM = '".$prenom."', ADRESSE = '".$adresse."', CODEP = '".$codepostal."', VILLE = '".$ville."', DATE = '".$date."',SEXE = '".$sexe."', TELEPHONE = '".$telephone."' WHERE LOGIN = '".$_SESSION["login"]."'";
+										  $str = "UPDATE users SET EMAIL = '".$email."', PASS = '".$pass."', NOM ='".$nom."', PRENOM = '".$prenom."', ADRESSE = '".$adresse."', CODEP = '".$codepostal."', VILLE = '".$ville."', DATE = '".$date."',SEXE = '".$sexe."', TELEPHONE = '".$telephone."' WHERE LOGIN = '".$_SESSION["login"]."'";
 										  query($mysqli,$str) or die ("Impossible de se connecter à base de donnèes<br>");
 										  header('location: profil.php');
 ?>

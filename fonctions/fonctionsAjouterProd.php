@@ -6,7 +6,7 @@
 
 		$mysqli=mysqli_connect($host,$user,$pass) or die("Problème de création de la base :".mysqli_error());
 		mysqli_select_db($mysqli,$base) or die("Impossible de sélectionner la base : $base");
-		$result = query($mysqli,"select distinct LIBELLE_RUB from RUBRIQUE");
+		$result = query($mysqli,"select distinct LIBELLE_RUB from rubrique");
 		echo "<h2>Ajouter produit</h2><br/>";
 		echo "<form  enctype='multipart/form-data' action='fonctions/fonctionsAjouterProdd.php' method='post' class='putImages'>";
 		echo "<table>";

@@ -178,7 +178,7 @@ $result["msg"] = "invalide";
 		  }
 
 		  if(isset($login)){
-				  $str = "SELECT EMAIL FROM USERS WHERE login = '".$login."'";
+				  $str = "SELECT EMAIL FROM users WHERE login = '".$login."'";
 			  $result = query($mysqli,$str) or die("Impossible de creer une compte dans ce moment<br>");
 			  if(mysqli_num_rows($result)>0){
 				  $ok = false;
@@ -186,7 +186,7 @@ $result["msg"] = "invalide";
 			  }
 			  
 			  
-			  $str = "SELECT LOGIN FROM USERS WHERE LOGIN = '".$login."'";
+			  $str = "SELECT LOGIN FROM users WHERE LOGIN = '".$login."'";
 			  $result = query($mysqli,$str) or die("Impossible de creer une compte dans ce moment<br>");
 			  if(mysqli_num_rows($result)>0){
 				  $ok = false;
@@ -200,7 +200,7 @@ $result["msg"] = "invalide";
 
 
 	if($ok === true){
-				$str = "INSERT INTO USERS VALUES ('".$login."','".$email."','".password_hash($pass, PASSWORD_DEFAULT)."','".$nom."','".$prenom."','".$date."','".$sexe."','".$adresse."','".$codepostal."','".$ville."','".$telephone."');";
+				$str = "INSERT INTO users VALUES ('".$login."','".$email."','".password_hash($pass, PASSWORD_DEFAULT)."','".$nom."','".$prenom."','".$date."','".$sexe."','".$adresse."','".$codepostal."','".$ville."','".$telephone."');";
 				query($mysqli,$str) or die("Impossible de creer une compte dans ce moment<br>");
 				$_SESSION["login"] = $login;
 			    $_SESSION["NOM"] = $nom;

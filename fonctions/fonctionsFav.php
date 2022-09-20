@@ -8,7 +8,7 @@
 			mysqli_select_db($mysqli,$base) or die("Impossible de sélectionner la base : $base");
 			
 			$str0 = 'select * from favs where id_prod = '.$_POST["item"];
-			$str = "INSERT INTO FAVS VALUES('".$_SESSION["login"]."','".$_POST["item"]."')";
+			$str = "INSERT INTO favs VALUES('".$_SESSION["login"]."','".$_POST["item"]."')";
 			$result = query($mysqli,$str0) or die("Impossible de ajouter produit<br>");
 			
 			if(mysqli_num_rows($result)>0 && isset($_POST["x"])){
