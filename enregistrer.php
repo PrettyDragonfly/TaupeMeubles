@@ -29,12 +29,12 @@ $result["msg"] = "invalide";
 					  }
 					  
 				  
-				  if(sizeof($login)>100){
+				  if(count((array)$login)>100){
 					  $return["loginLong"] = "l'login est trop long";
 					  $ok = false;
 				  }
 				  
-				  if(sizeof($pass)>100){
+				  if(count((array)$pass)>100){
 					  $return["passLong"] = "le mot de pass est trop long";
 					  $ok = false;
 				  }
@@ -70,7 +70,7 @@ $result["msg"] = "invalide";
 				  if(!preg_match("/^[a-zA-Z'\- ]+$/",$_POST["nombdd"])){
 					  $return["Nom"] = "le Nom n'est pas valid";
 					  $nom = NULL;
-				  }else if(sizeof($nom)>50){
+				  }else if(count((array)$nom)>50){
 					  $return["Nom"] = "le Nom est trop long";
 					   $ok = false;
 				  }
@@ -88,7 +88,7 @@ $result["msg"] = "invalide";
 				  if(!preg_match("/^[a-zA-Z'\- ]+$/",$_POST["prenombdd"])){
 					  $return["Prenom"] = "le Prénom n'est pas valid";
 					  $prenom = NULL;
-				  }else if(sizeof($prenom)>50){
+				  }else if(count((array)$prenom)>50){
 					  $return["Prenom"] = "le Prénom est trop long";
 					   $ok = false;
 				  }
@@ -103,7 +103,7 @@ $result["msg"] = "invalide";
 			  $adresse = NULL;
 			}else{
 				$adresse = mysqli_real_escape_string($mysqli,$_POST["adressebdd"]);
-				if(sizeof($adresse)>500){
+				if(count((array)$adresse)>500){
 				$return["Adresse"] = "L'adresse n'est pas valide";
 				$ok = false;
 				}
@@ -118,7 +118,7 @@ $result["msg"] = "invalide";
 			  $ville = NULL;
 			}else{
 				$ville = mysqli_real_escape_string($mysqli,$_POST["villebdd"]);
-				if(sizeof($ville)>50){
+				if(count((array)$ville)>50){
 				$return["ville"] = "La ville n'est pas valide";
 				$ok = false;
 				}
@@ -133,7 +133,7 @@ $result["msg"] = "invalide";
 			  $codepostal = NULL;
 			}else{
 				$codepostal = mysqli_real_escape_string($mysqli,$_POST["codepostalbdd"]);
-				if(sizeof($codepostal)>50){
+				if(count((array)$codepostal)>50){
 				$return["codepostal"] = "le code postal n'est pas valid";
 				$ok = false;
 				}
@@ -147,7 +147,7 @@ $result["msg"] = "invalide";
 			  $date = NULL;
 			}else{
 				$date = mysqli_real_escape_string($mysqli,$_POST["datebdd"]);
-				if(sizeof($date)>50){
+				if(count((array)$date)>50){
 				$return["date"] = "la date n'est pas valid";
 				$ok = false;
 				}

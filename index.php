@@ -71,7 +71,7 @@
 						<!-- Content -->
 							<section>
 								<header class="major">
-									<h2>Nouveautés</h2>
+									<h2>Nouveautes</h2>
 								</header>
 								<?php afficherProduits(); ?>
 							</section>					

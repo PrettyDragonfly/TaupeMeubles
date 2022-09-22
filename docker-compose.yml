@@ -16,7 +16,7 @@ services:
     ports:
       - "9906:3306"
   web:
-    image: php:5.6.1-apache
+    image: php:7.2-apache
     container_name: taupemeubles
     depends_on:
       - db

@@ -40,7 +40,7 @@ function afficherCadrePanier()
 		if($nbArticle ==1) echo '1 article ';
 		else echo $nbArticle.' articles ';
 		
-		echo $total.' €';
+		echo $total.' ï¿½';
 	}
 	
 	echo '</a>';
@@ -51,10 +51,14 @@ function afficherCadreCompte()
 	echo '<ul>';
 	
 	if(!isset($_SESSION["login"])) echo '<li><a class="btn btn-default" href="connexion.php">Connexion</a></li><li><a class="btn btn-default" href="inscription.php">Ouvrir un compte</a></li>';
-	else
+	else 
 	{
-		echo '<li><a class="btn btn-default" href="administration.php">Administration</a></li><li><a class="btn btn-default" href="profil.php">Mon compte</a></li><li><a href="histoire.php">Histoire</a></li><li><a href="deconnexion.php">Deconnexion</a></li>';
-		//echo '<a class="btn btn-default" href="deconnexion.php">Déconnexion</a>';
+		//seul l'admin peut accÃ©der Ã  la page administration
+		if($_SESSION["login"]=="admin"){ 
+			echo '<li><a class="btn btn-default" href="administration.php">Administration</a></li>';
+		}
+		echo '<li><a class="btn btn-default" href="profil.php">Mon compte</a></li><li><a href="histoire.php">Histoire</a></li><li><a href="deconnexion.php">Deconnexion</a></li>';
+		//echo '<a class="btn btn-default" href="deconnexion.php">Dï¿½connexion</a>';
 	}
 	
 	echo '</ul>';
