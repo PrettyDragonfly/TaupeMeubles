@@ -1,4 +1,5 @@
 <?php
+	session_start();
 	include 'fonctions/fonctionsLayout.php';
 	include 'fonctions/fonctionsUtilisateurs.php';
 ?>
