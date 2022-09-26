@@ -11,7 +11,7 @@
 					mysqli_select_db($mysqli,$base) or die("Impossible de sélectionner la base : $base");
 					
 					foreach($panier as $item){
-						query($mysqli,"replace into commande (ID_PROD,ID_CLIENT,DATE,NOM,PRENOM,ADRESSE,CP,VILLE,TELEPHONE) values ('".$item."','".$_SESSION["login"]."','".date('d/m/Y')."','".$_SESSION["NOM"]."','".$_SESSION["PRENOM"]."','".$_SESSION["ADRESSE"]."','".$_SESSION["CP"]."','".$_SESSION["VILLE"]."','".$_SESSION["TELEPHONE"]."')");
+						query($mysqli,"replace into commande (ID_PROD,ETAT,ID_CLIENT,DATE,CIVILITE,NOM,PRENOM,ADRESSE,CP,VILLE,TELEPHONE) values ('".$item."',0,'".$_SESSION["login"]."','".date('d/m/Y')."',0,'".$_SESSION["NOM"]."','".$_SESSION["PRENOM"]."','".$_SESSION["ADRESSE"]."','".$_SESSION["CP"]."','".$_SESSION["VILLE"]."','".$_SESSION["TELEPHONE"]."')");
 					}
 					setcookie("panier", "", time()-3600,"/");
 					mysqli_close($mysqli);

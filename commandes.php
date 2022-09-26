@@ -41,7 +41,12 @@
 								<header class="major">
 									<h2>Commandes</h2>
 								</header>
-								<?php afficherCommandes(); ?>
+								<?php 
+								//seul l'admin peut voir les commandes de tous les users
+								if(isset($_SESSION["login"]) & $_SESSION["login"]=="admin"){
+									afficherCommandes(); 
+								}
+								?>
 							</section>
 						</div>						
 					</div>
