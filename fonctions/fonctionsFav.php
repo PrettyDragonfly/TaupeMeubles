@@ -13,12 +13,15 @@
 			
 			if(mysqli_num_rows($result)>0 && isset($_POST["x"])){
 						query($mysqli,'delete from favs where id_prod = '.$_POST["item"].' and LOGIN = \''.$_SESSION["login"].'\'');
-						echo 'delete set';
+						echo 'Produit supprimé des favoris';
 			}else{
 						query($mysqli,$str);
-						echo 'set';
+						echo 'Produit ajouté aux favoris';
 			}
 			
 			mysqli_close($mysqli);
 	}
+	else {
+	    echo "Merci de vous connecter pour ajouter des produits à vos favoris";
+    }
 ?>
