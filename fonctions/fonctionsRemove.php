@@ -15,10 +15,9 @@
 				}				
 				
 			}
-		
 		}
 		
-		if($arr1){
+		if($trouve){
 			setcookie('panier',json_encode($arr1),time() + (60*30),"/");
 		}else{
 			setcookie("panier", "", time()-3600,"/");

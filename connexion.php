@@ -58,7 +58,7 @@
 						<div id="content" class="8u skel-cell-important">
 							<section>
 								<header class="major">
-									<h2>Connéxion</h2>
+									<h2>Connexion</h2>
 								</header>
 								<div id="reponse"></div>
 								<?php afficherConnexion(); ?>
