@@ -1,7 +1,6 @@
 <?php
 	session_start();
 	include 'fonctions/fonctionsLayout.php';
-	include 'fonctions/fonctionsInscription.php';
 ?>
 <!DOCTYPE HTML>
 <!--

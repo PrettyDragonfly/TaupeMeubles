@@ -2,7 +2,7 @@
 	session_start();
 	include("Parametres.php");
 	include("Fonctions.inc.php");
-	include("Donnees.inc.php");
+	
 
 		
 	if(isset($_SESSION["login"]) && $_SESSION["login"] = 'admin' && isset($_POST["id"])){
