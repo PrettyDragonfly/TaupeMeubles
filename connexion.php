@@ -25,13 +25,14 @@
 		<script src="js/skel.min.js"></script>
 		<script src="js/skel-layers.min.js"></script>
 		<script src="js/init.js"></script>
+		<script src='https://www.google.com/recaptcha/api.js' async defer></script>
 		<script>
 			$().ready(function() {
 				$('#submit').click(function (){
 				$.ajax({
 					type: 'POST',
 					url: 'fonctions/fonctionsLogin.php',
-					data: {login : $('#login').val(), password : $('#password').val()},
+					data: {login : $('#login').val(), password : $('#password').val(), btn: $('#g-recaptcha-response').val()},
 					success: function(data){
 								alert(data);
 								location.reload();						
@@ -116,4 +117,5 @@
 		</div>
 
 	</body>
+	
 </html>
