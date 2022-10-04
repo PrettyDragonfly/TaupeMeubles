@@ -42,6 +42,7 @@ if(isset($_POST["login"]) && isset($_POST["password"]) ){
    }else{
 		$return["msg"] = "Le captcha doit être rempli";
    }
-		
+   mysqli_close($mysqli);
+   echo $return["msg"];
 }
 ?>
