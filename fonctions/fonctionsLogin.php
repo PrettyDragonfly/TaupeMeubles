@@ -15,13 +15,16 @@ include("../Fonctions.inc.php");
 	
 	echo '<script>alert('.$decode.')</script>';
 
-	if($decode['success']){
-		$mysqli=mysqli_connect($host,$user,$pass) or die("Problème de création de la base :".mysqli_error());
-		mysqli_select_db($mysqli,$base) or die("Impossible de sélectionner la base : $base");
-			
-		$return["msg"] = "L'utilisateur n'a été pas trouvé";
 
-		if(isset($_POST["login"]) && isset($_POST["password"])){
+
+if(isset($_POST["login"]) && isset($_POST["password"]) ){
+	if(isset($_POST['captcha']) && !empty($_POST['captcha']))
+  {
+        $secret = '6LeNW1QiAAAAAO-DZq4od_3ZGaRD8_EkAU1IXnkx';
+        $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secret.'&response='.$_POST['captcha']);
+        $responseData = json_decode($verifyResponse);
+        if($responseData->success)
+        { 
 			$login = trim(mysqli_real_escape_string($mysqli,$_POST["login"]));
 			$pass = $_POST["password"];
 			$str = "SELECT * FROM users WHERE LOGIN = '".$login."'";
@@ -43,10 +46,10 @@ include("../Fonctions.inc.php");
 					exit();
 				}	
 			}
-		}
-		mysqli_close($mysqli);
-		echo $return["msg"];		
-	}
-	else 
-		echo "Le captcha svp";
+         }
+   }else{
+		$return["msg"] = "Le captcha doit être rempli";
+   }
+		
+}
 ?>

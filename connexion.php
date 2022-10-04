@@ -32,7 +32,7 @@
 				$.ajax({
 					type: 'POST',
 					url: 'fonctions/fonctionsLogin.php',
-					data: {login : $('#login').val(), password : $('#password').val(), btn: $('#g-recaptcha-response').val()},
+					data: {login : $('#login').val(), password : $('#password').val(), captcha : $('#g-recaptcha-response').val()},
 					success: function(data){
 								alert(data);
 								location.reload();						
@@ -62,7 +62,8 @@
 									<h2>Connexion</h2>
 								</header>
 								<div id="reponse"></div>
-								<?php afficherConnexion(); ?>
+								<?php //afficherConnexion(); 
+								afficherCaptcha();?>
 							</section>
 						</div>					
 					</div>
