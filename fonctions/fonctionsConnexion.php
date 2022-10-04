@@ -49,5 +49,6 @@ function afficherCaptcha(){ ?>
 		echo'<br /><br /><input id="submit" type="submit" name="submit" value="Valider" style="margin:0px"/>			
 		</div>
 	</div>';
+	
 }
 ?>

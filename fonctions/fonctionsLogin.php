@@ -3,18 +3,10 @@ session_start();
 include("../Parametres.php");
 include("../Fonctions.inc.php");
 
-	$secret = "6LeNW1QiAAAAAO-DZq4od_3ZGaRD8_EkAU1IXnkx";
-	//$response = htmlspecialchars($_POST['g-recaptcha-response']);
-	$response = $_POST["btn"];
-	$remoteip = $_SERVER['REMOTE_ADDR'];
+$mysqli=mysqli_connect($host,$user,$pass) or die("Problème de création de la base :".mysqli_error());
+mysqli_select_db($mysqli,$base) or die("Impossible de sélectionner la base : $base");
 
-	$request = "https://www.google.com/recaptcha/api/siteverify?secret=".$secret."&response=".$response."&remoteip=".$remoteip;
-	
-	$get = file_get_contents($request);
-	$decode = json_decode($get, true);
-	
-	echo '<script>alert('.$decode.')</script>';
-
+$return["msg"] = "L'utilisateur n'a été pas trouvé";
 
 
 if(isset($_POST["login"]) && isset($_POST["password"]) ){
