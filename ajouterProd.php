@@ -46,7 +46,13 @@
 									<h2>Ajouter un produit</h2>
 								</header>
 								<div id="reponse"></div>
-								<?php ajouterProduit(); ?>
+								<?php if(isset($_SESSION["login"]) & $_SESSION["login"]=="admin"){
+									ajouterProduit(); 
+								}else{
+									echo"Seul l'administrateur peut ajouter un produit";
+
+								}
+								?>
 							</section>
 						</div>					
 					</div>
