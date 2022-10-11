@@ -101,7 +101,11 @@ if(isset($_POST["adressebdd"])){
 	$adresse = NULL;
 }else{
 	$adresse = mysqli_real_escape_string($mysqli,$_POST["adressebdd"]);
-	if(count((array)$adresse)>500){
+	if(!preg_match("/^[a-zA-Z'\- ]+$/",$_POST["adressebdd"])){
+		$return["Adresse"] = "L'adresse n'est pas valide";
+		$adresse = NULL;
+	}
+	else if(count((array)$adresse)>500){
 			$return["Adresse"] = "L'adresse n'est pas valide";
 			$ok = false;
 		}
@@ -116,7 +120,11 @@ if(isset($_POST["villebdd"])){
 		$ville = NULL;
 	}else{
 		$ville = mysqli_real_escape_string($mysqli,$_POST["villebdd"]);
-		if(count((array)$ville)>50){
+		if(!preg_match("/^[a-zA-Z'\- ]+$/",$_POST["villebdd"])){
+			$return["Ville"] = "La ville n'est pas valide";
+			$ville = NULL;
+		}
+		else if(count((array)$ville)>50){
 		$return["ville"] = "La ville n'est pas valide";
 		$ok = false;
 		}
@@ -131,7 +139,11 @@ if(isset($_POST["codepostalbdd"])){
 	$codepostal = NULL;
 }else{
 	$codepostal = mysqli_real_escape_string($mysqli,$_POST["codepostalbdd"]);
-	if(count((array)$codepostal)>50){
+	if(!preg_match("/^[0-9]{5}$/",$_POST["codepostalbdd"])){
+		$return["codepostal"] = "Le code postal n'est pas valide";
+		$codepostal = NULL;
+	}
+	else if(count((array)$codepostal)>50){
 	$return["codepostal"] = "Le code postal n'est pas valide";
 	$ok = false;
 	}

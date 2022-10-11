@@ -4,8 +4,7 @@ version: '3'
 
 services:
   db:
-    image: mysql:5.7.17
-    platform: linux/x86_64
+    image: jamielsharief/mysql:latest
     environment:
       MYSQL_ROOT_PASSWORD: test
       MYSQL_ALLOW_EMPTY_PASSWORD: "true"
@@ -16,7 +15,7 @@ services:
     ports:
       - "9906:3306"
   web:
-    #image: php:7.2-apache
+    image: php:latest-apache
     build: .
     container_name: taupemeubles
     depends_on:
@@ -28,7 +27,7 @@ services:
     stdin_open: true
     tty: true
   phpmyadmin:
-    image: phpmyadmin
+    image: phpmyadmin:latest
     restart: always
     ports:
     - 8080:80

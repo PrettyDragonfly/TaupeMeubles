@@ -5,7 +5,7 @@
 		$file_result = 'Error';
 		
 	}else{
-		$file_result = 'images/'.$_FILES['file']['name'];
+		$file_result = 'images/meubles/'.$_FILES['file']['name'];
 		move_uploaded_file($_FILES['file']['tmp_name'],'../'.$file_result);
 		
 		include("../Parametres.php");
@@ -23,28 +23,28 @@
 			}
 		
 			if(!preg_match('/^([0-9]+$)/', $_POST["prix"])){
-					$ok = false;
+				$ok = false;
+			}
+			if(!preg_match("/^[a-zA-Z'\-\_0-9 ]+$/",$_POST["descriptif"])){
+				$ok = false;
 			}
 			
-				if($ok){
-					$libelle = mysqli_real_escape_string($mysqli,$_POST["libelle"]);
-					$prix = mysqli_real_escape_string($mysqli,$_POST["prix"]);
-					$descriptif = mysqli_real_escape_string($mysqli,$_POST["descriptif"]);
-					$rubrique = mysqli_real_escape_string($mysqli,$_POST["rubrique"]);
-							
-					query($mysqli,"replace into `produits` (`Libelle`,`Prix`,`descriptif`,`photo`) values ('".$libelle."','".$prix."','".$descriptif."','".$file_result."')");
-					query($mysqli,'insert into appartient (id_prod,id_rub) values ((select max(id_prod) from produits),(select id_rub from rubrique where libelle_rub = \''.$rubrique.'\'))');
-					echo "Engretrement reussi";
-				}
-				else
-				{
-					echo "Erreur1";
-				}
+			if($ok){
+				$libelle = mysqli_real_escape_string($mysqli,$_POST["libelle"]);
+				$prix = mysqli_real_escape_string($mysqli,$_POST["prix"]);
+				$descriptif = mysqli_real_escape_string($mysqli,$_POST["descriptif"]);
+				$rubrique = mysqli_real_escape_string($mysqli,$_POST["rubrique"]);
 						
-				
-		
+				query($mysqli,"replace into `produits` (`Libelle`,`Prix`,`descriptif`,`photo`) values ('".$libelle."','".$prix."','".$descriptif."','".$file_result."')");
+				query($mysqli,'insert into appartient (id_prod,id_rub) values ((select max(id_prod) from produits),(select id_rub from rubrique where libelle_rub = \''.$rubrique.'\'))');
+				echo "Enregistrement réussi";
+			}
+			else
+			{
+				echo "Veuillez remplir tous les champs";
+			}
 		}else{
-			echo "Erreur2";
+			echo "Erreur ?";
 		}
 		
 		mysqli_close($mysqli);
