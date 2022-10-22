@@ -115,7 +115,7 @@ A associer avec l ensemble de la collection SPRING pour un aménagement réussi\
 	
 	
   query($mysqli,'insert into rubrique (LIBELLE_RUB)values (\'Chaise\')');
-   query($mysqli,'INSERT INTO produits (LIBELLE,PRIX,DESCRIPTIF,PHOTO) VALUES(\'Chaise design simili\',99,\'Pin massif. Assise multiplis mousse 50kg/m3. Dossier mousse 50kg/m3. Revêtement : polyuréthane\',\'MSM6014266-Z.jpg\')');
+   query($mysqli,'INSERT INTO produits (LIBELLE,PRIX,DESCRIPTIF,PHOTO) VALUES(\'Chaise design simili\',99,\'Pin massif. Assise multiplis mousse 50kg/m3. Dossier mousse 50kg/m3. Revêtement : polyuréthane\',\'images\\\meubles\\\MSM6014266-Z.jpg\')');
  	query($mysqli,"insert into appartient values(".$num++.",".$rub++.")");
 	
   query($mysqli,'insert into rubrique (LIBELLE_RUB)values (\'Buffet\')');
