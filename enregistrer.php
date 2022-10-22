@@ -171,6 +171,7 @@ if(isset($_POST["telephonebdd"])){
 	if(!preg_match("/^[0-9]{9,15}$/",$_POST["telephonebdd"])){
 			$return["telephoneVal"] = "le téléphone n'est pas valide";
 			$telephone = NULL;
+			$ok = false;
 }
 else{
 	$telephone = mysqli_real_escape_string($mysqli,$_POST["telephonebdd"]);
