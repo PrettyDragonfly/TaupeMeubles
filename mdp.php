@@ -52,7 +52,7 @@
 					<div class="row">
 						<!-- Content -->
 							<section>
-					<h2>Mot de passe oublié</h2><br/>
+					<h2>Mot de passe oublie</h2><br/>
 					<label>Entrez l'adresse email avec laquelle vous vous êtes inscrit pour réinitialiser votre mot de passe.</label><br/><br/>
 					<input type="text" size="55" id="email" placeholder="votre email"></input><br/><br/>
 					<button id="valider">Valider</button>

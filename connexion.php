@@ -69,7 +69,7 @@
 					</div>
 				</div>
 			</div>
-		
+		<?php /*
 		<!-- Team -->
 			<div class="wrapper style5">
 				<section id="team" class="container">
@@ -116,7 +116,7 @@
 				</ul>
 			</section>		
 		</div>
-
+	*/ ?>
 	</body>
 	
 </html>
