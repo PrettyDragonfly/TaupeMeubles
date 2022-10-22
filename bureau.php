@@ -66,7 +66,7 @@
 						<!-- Content -->
 							<section>
 								<header class="major">
-									<h2>Bureaut</h2>
+									<h2>Bureau</h2>
 								</header>
 								
 								<?php	
