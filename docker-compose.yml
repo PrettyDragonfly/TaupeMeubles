@@ -1,6 +1,6 @@
 # ./docker-compose.yml
 
-version: '3'
+version: '3.8'
 
 services:
   db:
@@ -15,8 +15,8 @@ services:
     ports:
       - "9906:3306"
   web:
-    image: php:latest-apache
-    build: .
+    image: php:8.0-apache
+    build: ./DockerPHP
     container_name: taupemeubles
     depends_on:
       - db
