@@ -19,8 +19,14 @@
 						echo '<table>';
 						$item = 0;
 						foreach($arr as $item){
-								$str = 'select * from produits where id_prod = '.$item;
-								$result = query($mysqli,$str);
+                                $stmt = $mysqli->prepare("SELECT * FROM produits WHERE id_prod = ?");
+                                $stmt->bind_param("i", $item);
+                                $stmt->execute();
+                                $result = $stmt->get_result();
+
+								//$str = 'select * from produits where id_prod = '.$item;
+								//$result = query($mysqli,$str);
+
 								$row = mysqli_fetch_assoc($result);
 											echo "<tr><td width='50px'>ID</td><td width='80px'>Libelle</td><td width='80px'>Prix</td></tr>"; 
 											echo "<tr><td colspan='3'><hr></td></tr>";

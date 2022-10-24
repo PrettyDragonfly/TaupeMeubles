@@ -34,10 +34,22 @@
 				$prix = mysqli_real_escape_string($mysqli,$_POST["prix"]);
 				$descriptif = mysqli_real_escape_string($mysqli,$_POST["descriptif"]);
 				$rubrique = mysqli_real_escape_string($mysqli,$_POST["rubrique"]);
-						
-				query($mysqli,"replace into `produits` (`Libelle`,`Prix`,`descriptif`,`photo`) values ('".$libelle."','".$prix."','".$descriptif."','".$file_result."')");
-				query($mysqli,'insert into appartient (id_prod,id_rub) values ((select max(id_prod) from produits),(select id_rub from rubrique where libelle_rub = \''.$rubrique.'\'))');
-				echo "Enregistrement réussi";
+
+                $stmt = $mysqli->prepare("REPLACE INTO produits (LIBELLE,PRIX,DESCRIPTIF,PHOTO) VALUES (?, ?, ?, ?)");
+                $stmt->bind_param("sdss", $libelle, $prix, $descriptif, $file_result);
+                $stmt->execute();
+                $result = $stmt->get_result();
+
+				//query($mysqli,"replace into `produits` (`Libelle`,`Prix`,`descriptif`,`photo`) values ('".$libelle."','".$prix."','".$descriptif."','".$file_result."')");
+
+                $stmt = $mysqli->prepare("INSERT INTO appartient (id_prod,id_rub) VALUES ((select max(id_prod) from produits),(select id_rub from rubrique where libelle_rub = ?))");
+                $stmt->bind_param("i", $rubrique);
+                $stmt->execute();
+                $result = $stmt->get_result();
+
+                //query($mysqli,'insert into appartient (id_prod,id_rub) values ((select max(id_prod) from produits),(select id_rub from rubrique where libelle_rub = \''.$rubrique.'\'))');
+
+                echo "Enregistrement réussi";
 			}
 			else
 			{

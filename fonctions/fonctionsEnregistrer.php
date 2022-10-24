@@ -190,16 +190,27 @@ $result["msg"] = "invalide";
 				$date = NULL;
 		}
 		  if(isset($login)){
-				  $str = "SELECT EMAIL FROM users WHERE login = '".$login."'";
-			  $result = query($mysqli,$str) or die("Impossible de creer une compte dans ce moment<br>");
+			  $stmt = $mysqli->prepare("SELECT EMAIL FROM users WHERE LOGIN = ?");
+			  $stmt->bind_param("s", $login);
+			  $stmt->execute();
+			  $result = $stmt->get_result()or die("Impossible de creer une compte<br>");
+
+			  //$str = "SELECT EMAIL FROM users WHERE login = '".$login."'";
+			  //$result = query($mysqli,$str) or die("Impossible de creer une compte dans ce moment<br>");
+
 			  if(mysqli_num_rows($result)>0){
 				  $ok = false;
 				  $return["dejaEmail"] = "l'email saisi est déjà enregistré";
 			  }
+
+			  $stmt = $mysqli->prepare("SELECT LOGIN FROM users WHERE LOGIN = ?");
+			  $stmt->bind_param("s", $login);
+			  $stmt->execute();
+			  $result = $stmt->get_result()or die("Impossible de creer une compte<br>");
 			  
-			  
-			  $str = "SELECT LOGIN FROM users WHERE LOGIN = '".$login."'";
-			  $result = query($mysqli,$str) or die("Impossible de creer une compte dans ce moment<br>");
+			  //$str = "SELECT LOGIN FROM users WHERE LOGIN = '".$login."'";
+			  //$result = query($mysqli,$str) or die("Impossible de creer une compte dans ce moment<br>");
+
 			  if(mysqli_num_rows($result)>0){
 				  $ok = false;
 				  $return["dejaLogin"] = "le login saisi est déjà enregistré";
@@ -208,15 +219,18 @@ $result["msg"] = "invalide";
 			  $ok = false;
 		  }
 
-
-
-
 	if($ok == true){
-				  $str = "INSERT INTO users VALUES ('".$login."','".$email."','".password_hash($pass, PASSWORD_DEFAULT)."','".$nom."','".$prenom."','".$date."','".$sexe."','".$adresse."','".$codepostal."','".$ville."','".$telephone."');";
-				  query($mysqli,$str) or die("Impossible de creer une compte dans ce moment<br>");
-				  setcookie("user",$login);
-				  unset($return);
-				  $return["msg"] = "Opération réussie";
+		$stmt = $mysqli->prepare("INSERT INTO users (LOGIN, EMAIL, PASS, NOM, PRENOM, DATE, SEXE, ADRESSE, CODEP, VILLE, TELEPHONE) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+		$stmt->bind_param("ssssssssisi", $login, $email, password_hash($pass, PASSWORD_DEFAULT), $nom, $prenom, $date, $sexe, $adresse, $codepostal, $ville, $telephone);
+		$stmt->execute();
+		$result = $stmt->get_result()or die("Impossible de creer une compte<br>");
+		
+		//$str = "INSERT INTO users VALUES ('".$login."','".$email."','".password_hash($pass, PASSWORD_DEFAULT)."','".$nom."','".$prenom."','".$date."','".$sexe."','".$adresse."','".$codepostal."','".$ville."','".$telephone."');";
+		//query($mysqli,$str) or die("Impossible de creer une compte dans ce moment<br>");
+
+		setcookie("user",$login);
+		unset($return);
+		$return["msg"] = "Opération réussie";
 	}
 $return["ok"] = false;
 mysqli_close($mysqli);	
