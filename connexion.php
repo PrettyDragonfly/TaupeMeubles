@@ -69,54 +69,6 @@
 					</div>
 				</div>
 			</div>
-		<?php /*
-		<!-- Team -->
-			<div class="wrapper style5">
-				<section id="team" class="container">
-					<header class="major">
-						<h2>Cras vitae metus aliNuam</h2>
-						<span class="byline">pulvinar mollis. Vestibulum sem magna, elementum vestibulum arcu</span>
-					</header>
-					<div class="row">
-						<div class="3u">
-							<a href="#" class="image"><img src="images/placeholder.png" alt=""></a>
-							<h3>Molly Millions</h3>
-							<p>In posuere eleifend odio quisque semper augue wisi ligula.</p>
-						</div>
-						<div class="3u">
-							<a href="#" class="image"><img src="images/placeholder.png" alt=""></a>
-							<h3>Henry Dorsett Case</h3>
-							<p>In posuere eleifend odio quisque semper augue wisi ligula.</p>
-						</div>
-						<div class="3u">
-							<a href="#" class="image"><img src="images/placeholder.png" alt=""></a>
-							<h3>Willis Corto</h3>
-							<p>In posuere eleifend odio quisque semper augue wisi ligula.</p>
-						</div>
-						<div class="3u">
-							<a href="#" class="image"><img src="images/placeholder.png" alt=""></a>
-							<h3>Linda Lee</h3>
-							<p>In posuere eleifend odio quisque semper augue wisi ligula.</p>
-						</div>
-					</div>
-				</section>
-			</div>
-
-	<!-- Footer -->
-		<div id="footer">
-			<section class="container">
-				<header class="major">
-					<h2>Contactez nous</h2>
-				</header>
-				<ul class="icons">
-					<li class="active"><a href="#" class="fa fa-facebook"><span>Facebook</span></a></li>
-					<li><a href="#" class="fa fa-twitter"><span>Twitter</span></a></li>
-					<li><a href="#" class="fa fa-dribbble"><span>Pinterest</span></a></li>
-					<li><a href="#" class="fa fa-google-plus"><span>Google+</span></a></li>
-				</ul>
-			</section>		
-		</div>
-	*/ ?>
 	</body>
 	
 </html>
