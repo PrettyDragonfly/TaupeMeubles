@@ -217,7 +217,7 @@ if(isset($login)){
 }
 
 if($ok === true){
-    $stmt = $mysqli->prepare("INSERT INTO MyGuests (LOGIN, EMAIL, PASS, NOM, PRENOM, DATE, SEXE, ADRESSE, CODEP, VILLE, TELEPHONE) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt = $mysqli->prepare("INSERT INTO user (LOGIN, EMAIL, PASS, NOM, PRENOM, DATE, SEXE, ADRESSE, CODEP, VILLE, TELEPHONE) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
     $stmt->bind_param("ssssssssisi", $login, $email, password_hash($pass, PASSWORD_DEFAULT), $nom, $prenom, $date, $sexe, $adresse, $codepostal, $ville, $telephone);
     $stmt->execute();
     $result = $stmt->get_result();
