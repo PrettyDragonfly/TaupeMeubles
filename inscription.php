@@ -51,13 +51,13 @@
 				<div class="modal-body">
 					<form method="post" action="enregistrer.php" autocomplete="off">
 						<div>
-							Login: <input type="text" maxlength="100" name="loginbdd" /><br/>
+							Login: <input type="text" maxlength="100" name="loginbdd"  placeholder='Login'/><br/>
 						</div>
 						<div>
-							Password<input type="password" maxlength="100" name="passwordbdd"/><br/>
+							Password<input type="password" maxlength="100" name="passwordbdd"  placeholder='Mot de passe'/><br/>
 						</div>
 						<div>
-							Email: <input type="email" maxlength="200" name="emailbdd"/><br/>
+							Email: <input type="email" maxlength="200" name="emailbdd" placeholder='Adresse mail'/><br/>
 						</div>
 
 						<div>
@@ -70,7 +70,7 @@
 							Date de Naissance: <input type='date' name='datebdd' placeholder='Date de Naissance'/>
 						</div>
 						<div>
-							<br/>Telephone: <input type='text' placeholder='Telephone' maxlength='15' name='telephonebdd'/><br/>
+							<br/>Telephone: <input type='text' placeholder='0611223344' maxlength='15' name='telephonebdd'/><br/>
 						</div>
 						<div>
 							Adresse: <input type='textarea' placeholder='Adresse' maxlength='500' name='adressebdd'/><br/>
