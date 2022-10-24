@@ -11,9 +11,21 @@ if(isset($_COOKIE["panier"]) && isset($_SESSION["login"]) && isset($_POST["num"]
         mysqli_select_db($mysqli,$base) or die("Impossible de sélectionner la base : $base");
 
         foreach($panier as $item){
+            $date = date('d/m/Y');
             $stmt = $mysqli->prepare("REPLACE INTO commande (ID_PROD,ETAT,ID_CLIENT,DATE,CIVILITE,NOM,PRENOM,ADRESSE,CP,VILLE,TELEPHONE) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             $etat = 0;
-            $stmt->bind_param("iissssssiss", $item, $etat, $_SESSION["login"], date('d/m/Y'),0,$_SESSION["NOM"], $_SESSION["PRENOM"], $_SESSION["ADRESSE"], $_SESSION["CP"], $_SESSION["VILLE"], $_SESSION["TELEPHONE"]);
+            $civilite = 0;
+            $stmt->bind_param("iissssssiss", $item,
+                $etat,
+                $_SESSION["login"],
+                $date,
+                $civilite,
+                $_SESSION["NOM"],
+                $_SESSION["PRENOM"],
+                $_SESSION["ADRESSE"],
+                $_SESSION["CP"],
+                $_SESSION["VILLE"],
+                $_SESSION["TELEPHONE"]);
             $stmt->execute();
             $result = $stmt->get_result();
 

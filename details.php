@@ -47,7 +47,12 @@
 		$result = query($mysqli,'select * from rubrique');						
 								
 		if(isset($_GET["prod"])){
-			$result = query($mysqli,'select * from produits where id_prod = \''.$_GET["prod"].'\'');
+            $stmt = $mysqli->prepare("SELECT * FROM produits WHERE id_prod = ?");
+            $stmt->bind_param("i", $_GET["prod"]);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+			//$result = query($mysqli,'select * from produits where id_prod = \''.$_GET["prod"].'\'');
 			
 			if((mysqli_num_rows($result)>0)){
 					while($row = mysqli_fetch_assoc($result)){
@@ -68,8 +73,13 @@
 			}
 		}else if((isset($_SESSION["login"]) && $_SESSION["login"]== 'admin') && isset($_GET["login"])){
 			echo '<h4>Client(e)</h4><hr>';
-			$str = "SELECT LOGIN,EMAIL,PASS,NOM,PRENOM,DATE,SEXE,ADRESSE,CODEP,VILLE,TELEPHONE FROM users WHERE LOGIN = '".$_GET["login"]."'";
-			$result = query($mysqli,$str) or die("Impossible de se connecter");
+            $stmt = $mysqli->prepare("SELECT LOGIN,EMAIL,PASS,NOM,PRENOM,DATE,SEXE,ADRESSE,CODEP,VILLE,TELEPHONE FROM users WHERE LOGIN = ?");
+            $stmt->bind_param("s", $_GET["login"]);
+            $stmt->execute();
+            $result = $stmt->get_result() or die("Impossible de se connecter");
+
+			//$str = "SELECT LOGIN,EMAIL,PASS,NOM,PRENOM,DATE,SEXE,ADRESSE,CODEP,VILLE,TELEPHONE FROM users WHERE LOGIN = '".$_GET["login"]."'";
+			//$result = query($mysqli,$str) or die("Impossible de se connecter");
 			$row = mysqli_fetch_assoc($result);
 				if(is_null($row["LOGIN"])){$login = "";}else{$login = $row["LOGIN"];}
 				if(is_null($row["EMAIL"])){$email = "";}else{$email = $row["EMAIL"];}

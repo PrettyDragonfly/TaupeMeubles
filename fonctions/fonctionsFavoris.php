@@ -9,7 +9,13 @@
 		
 					$mysqli=mysqli_connect($host,$user,$pass) or die("Problème de création de la base :".mysqli_error());
 					mysqli_select_db($mysqli,$base) or die("Impossible de sélectionner la base : $base");
-					$result = query($mysqli,'select * from produits where id_prod in (select id_prod from favs where login = \''.$_SESSION["login"].'\')');
+
+                    $stmt = $mysqli->prepare("SELECT * FROM produits WHERE ID_PROD in (SELECT ID_PROD FROM favs WHERE LOGIN = ?)");
+                    $stmt->bind_param("s", $_SESSION["login"]);
+                    $stmt->execute();
+                    $result = $stmt->get_result();
+
+					//$result = query($mysqli,'select * from produits where id_prod in (select id_prod from favs where login = \''.$_SESSION["login"].'\')');
 					$num = mysqli_num_rows($result);
 					echo '<div class="wrapper style5"><section id="team" class="container"><div class="row">';
 						if($num > 0){

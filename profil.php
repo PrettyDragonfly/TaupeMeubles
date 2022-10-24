@@ -7,8 +7,13 @@
 		  
 		  $mysqli=mysqli_connect($host,$user,$pass) or die("Problème de création de la base :".mysqli_error());
 		  mysqli_select_db($mysqli,$base) or die("Impossible de sélectionner la base : $base");
-				$str = "SELECT LOGIN,EMAIL,PASS,NOM,PRENOM,DATE,SEXE,ADRESSE,CODEP,VILLE,TELEPHONE FROM users WHERE LOGIN = '".$_SESSION["login"]."'";
-				$result = query($mysqli,$str) or die("Impossible de se connecter");
+                $stmt = $mysqli->prepare("SELECT LOGIN,EMAIL,PASS,NOM,PRENOM,DATE,SEXE,ADRESSE,CODEP,VILLE,TELEPHONE FROM users WHERE LOGIN = ?");
+                $stmt->bind_param("s", $_SESSION["login"]);
+                $stmt->execute();
+                $result = $stmt->get_result() or die("Impossible de se connecter");
+
+		        //$str = "SELECT LOGIN,EMAIL,PASS,NOM,PRENOM,DATE,SEXE,ADRESSE,CODEP,VILLE,TELEPHONE FROM users WHERE LOGIN = '".$_SESSION["login"]."'";
+				//$result = query($mysqli,$str) or die("Impossible de se connecter");
 				$row = mysqli_fetch_assoc($result);
 				if(is_null($row["LOGIN"])){$login = "";}else{$login = $row["LOGIN"];}
 				if(is_null($row["EMAIL"])){$email = "";}else{$email = $row["EMAIL"];}

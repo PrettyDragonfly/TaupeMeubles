@@ -7,7 +7,13 @@
 
 		$mysqli=mysqli_connect($host,$user,$pass) or die("Problème de création de la base :".mysqli_error());
 		mysqli_select_db($mysqli,$base) or die("Impossible de sélectionner la base : $base");
-		$result = query($mysqli,'select id_com, id_client, (select prenom from users where users.login = commande.id_client limit 1) as prenom,(select nom from users where users.login = commande.id_client limit 1) as nom,id_prod,date,ADRESSE,cp,ville from commande where  id_client = \''.$_SESSION["login"].'\'');
+
+        $stmt = $mysqli->prepare("SELECT id_com, id_client, (select prenom from users where users.login = commande.id_client limit 1) as prenom,(select nom from users where users.login = commande.id_client limit 1) as nom,id_prod,date,ADRESSE,cp,ville from commande where  id_client = ?");
+        $stmt->bind_param("s", $_SESSION["login"]);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+		//$result = query($mysqli,'select id_com, id_client, (select prenom from users where users.login = commande.id_client limit 1) as prenom,(select nom from users where users.login = commande.id_client limit 1) as nom,id_prod,date,ADRESSE,cp,ville from commande where  id_client = \''.$_SESSION["login"].'\'');
 		$num = mysqli_num_rows($result);
 			if($num > 0){
 			echo "<table>";

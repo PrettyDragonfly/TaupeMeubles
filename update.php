@@ -5,10 +5,16 @@ include("Parametres.php");
 include("Fonctions.inc.php");
 
 $mysqli=mysqli_connect($host,$user,$pass) or die("Problème de création de la base :".mysqli_error());
-mysqli_select_db($mysqli,$base) or die("Impossible de sélectionner la base : $base");	
+mysqli_select_db($mysqli,$base) or die("Impossible de sélectionner la base : $base");
 
-$str = "SELECT * FROM users WHERE LOGIN = '".$_SESSION["login"]."'";
-$result = query($mysqli,$str) or die ("Impossible de faire une connection à base de donnèes<br>");
+$stmt = $mysqli->prepare("SELECT * FROM users WHERE LOGIN = ?");
+$stmt->bind_param("s", $_SESSION["login"]);
+$stmt->execute();
+$result = $stmt->get_result() or die("Impossible de faire une connection à base de données");
+
+//$str = "SELECT * FROM users WHERE LOGIN = '".$_SESSION["login"]."'";
+//$result = query($mysqli,$str) or die ("Impossible de faire une connection à base de donnèes<br>");
+
 $row = mysqli_fetch_assoc($result);
 if((isset($_POST["emailbdd"]) && empty($_POST["emailbdd"])) || !(isset($_POST["emailbdd"]))){
 	$email = $row["EMAIL"];
@@ -142,7 +148,13 @@ else{
 
 $sexe = $_POST["optradio"];
 
-$str = "UPDATE users SET EMAIL = '".$email."', PASS = '".$pass."', NOM ='".$nom."', PRENOM = '".$prenom."', ADRESSE = '".$adresse."', CODEP = '".$codepostal."', VILLE = '".$ville."', DATE = '".$date."',SEXE = '".$sexe."', TELEPHONE = '".$telephone."' WHERE LOGIN = '".$_SESSION["login"]."'";
-query($mysqli,$str) or die ("Impossible de se connecter à base de donnèes<br>");
+$stmt = $mysqli->prepare("UPDATE user SET EMAIL = ?, PASS = ?, NOM = ?, PRENOM = ?, ADRESSE = ?, CODEP = ?, VILLE = ?, DATE = ?,SEXE = ?, TELEPHONE = ? WHERE LOGIN = ?");
+$stmt->bind_param("sssssisssis", $email, $pass, $nom, $prenom, $adresse, $codepostal, $ville, $date,$sexe, $telephone, $_SESSION["login"]);
+$stmt->execute();
+$result = $stmt->get_result() or die("Impossible de se connecter à base de données");
+
+//$str = "UPDATE users SET EMAIL = '".$email."', PASS = '".$pass."', NOM ='".$nom."', PRENOM = '".$prenom."', ADRESSE = '".$adresse."', CODEP = '".$codepostal."', VILLE = '".$ville."', DATE = '".$date."',SEXE = '".$sexe."', TELEPHONE = '".$telephone."' WHERE LOGIN = '".$_SESSION["login"]."'";
+//query($mysqli,$str) or die ("Impossible de se connecter à base de donnèes<br>");
+
 header('location: profil.php');
 ?>
