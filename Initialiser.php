@@ -89,8 +89,8 @@ query($mysqli,'CREATE TABLE IF NOT EXISTS `appartient` (
   PRIMARY KEY (`id_prod`,`id_rub`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;');
 
-$rub = 13;
-$num = 13;
+$rub = 14;
+$num = 14;
 						
   // Insertion
   query($mysqli,"INSERT INTO users VALUES ('admin','admin@admin.com','".password_hash('pass', PASSWORD_DEFAULT)."','ADMIN','admin','01/01/1999','Homme',NULL,'57000',NULL,918633099);");
@@ -134,7 +134,7 @@ Espace de travail conséquent et aéré\',\'images\\\meubles\\\MBU6060008-Z.jpg\
 Fonctionnel et design
 Méthode de fabrication respectueuse de l environnement
 Constitué de matériaux fiables et haut de gamme\',\'images\\\meubles\\\L001-MBU0016172-Z.jpg\')');   
-  	query($mysqli,"insert into appartient values(".$num++.",".$rub++.")");
+  	query($mysqli,"insert into appartient values(".$num++.",".$rub.")");
 	query($mysqli,"insert into appartient values(".$num++.",".$rub.")");
   
   
@@ -143,7 +143,9 @@ Constitué de matériaux fiables et haut de gamme\',\'images\\\meubles\\\L001-MB
 Style contemporain ambiance zen
 Rangement fonctionnel avec tiroirs à compartiments
 Fermeture silencieuse des tiroirs et des portes\',\'images\\\meubles\\\B001-MBA1254590-2-Z.jpg\')');
-  	query($mysqli,"insert into appartient values(".$num++.",".$rub++.")");
+  $rub = $rub+2;
+  	query($mysqli,"insert into appartient values(".$num++.",21)");
+    //query($mysqli,"insert into appartient values(22,21)");
 
 
 

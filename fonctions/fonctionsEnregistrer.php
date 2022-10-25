@@ -195,8 +195,8 @@ $result["msg"] = "invalide";
 			  $stmt->execute();
 			  $result = $stmt->get_result()or die("Impossible de creer une compte<br>");
 
-			  //$str = "SELECT EMAIL FROM users WHERE login = '".$login."'";
-			  //$result = query($mysqli,$str) or die("Impossible de creer une compte dans ce moment<br>");
+			  $str = "SELECT EMAIL FROM users WHERE login = '".$login."'";
+			  $result = query($mysqli,$str) or die("Impossible de creer une compte dans ce moment<br>");
 
 			  if(mysqli_num_rows($result)>0){
 				  $ok = false;
