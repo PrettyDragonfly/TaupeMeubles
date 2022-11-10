@@ -20,7 +20,7 @@
                         $stmt = $mysqli->prepare("DELETE FROM favs WHERE ID_PROD = ? and LOGIN = ?");
                         $stmt->bind_param("is", $_POST["item"], $_SESSION["login"]);
                         $stmt->execute();
-                        $result = $stmt->get_result()or die("Impossible d'ajouter produit<br>");
+                        $result = $stmt->get_result();
 
 						//query($mysqli,'delete from favs where id_prod = '.$_POST["item"].' and LOGIN = \''.$_SESSION["login"].'\'');
 						echo 'Produit supprimé des favoris';
@@ -28,7 +28,7 @@
                         $stmt = $mysqli->prepare("INSERT INTO favs (LOGIN, ID_PROD) VALUES (?,?)");
                         $stmt->bind_param("si", $_SESSION["login"], $_POST["item"]);
                         $stmt->execute();
-                        $result = $stmt->get_result()or die("Impossible d'ajouter produit<br>");
+                        $result = $stmt->get_result();
 						//query($mysqli,$str);
 						echo 'Produit ajouté aux favoris';
 			}
