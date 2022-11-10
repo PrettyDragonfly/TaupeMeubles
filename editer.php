@@ -8,10 +8,10 @@
 		  $mysqli=mysqli_connect($host,$user,$pass) or die("Problème de création de la base :".mysqli_error());
 		  mysqli_select_db($mysqli,$base) or die("Impossible de sélectionner la base : $base");
                 $stmt = $mysqli->prepare("SELECT LOGIN,EMAIL,PASS,NOM,PRENOM,DATE,SEXE,ADRESSE,CODEP,VILLE,TELEPHONE FROM users WHERE LOGIN = ?");
-                $stmt->bind_param("i", $_SESSION["login"]);
+				$stmt->bind_param("s", $_SESSION["login"]);
                 $stmt->execute();
                 $result = $stmt->get_result() or die("Impossible de se connecter");
-
+		
 		        //$str = "SELECT LOGIN,EMAIL,PASS,NOM,PRENOM,DATE,SEXE,ADRESSE,CODEP,VILLE,TELEPHONE FROM users WHERE LOGIN = '".$_SESSION["login"]."'";
 				//$result = query($mysqli,$str) or die("Impossible de se connecter");
 
@@ -92,7 +92,7 @@
 										</tr>
 										
 										<tr>
-											<td><p><strong>ADRESSE</strong></p></td><td><textarea name='ADRESSEebdd' rows=\"4\" placeholder=\"".$ADRESSEe."\"></textarea></td>
+											<td><p><strong>ADRESSE</strong></p></td><td><textarea name='adressebdd' rows=\"4\" placeholder=\"".$ADRESSEe."\"></textarea></td>
 										</tr>
 										<tr>
 											<td><p><strong>Ville</strong></p></td><td><input name='villebdd' type=\"text\" placeholder=\"".$ville."\"/></td>
