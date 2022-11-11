@@ -3,7 +3,7 @@
 
 	$image = $_FILES['file']['name'];
 	$extension = strtolower(pathinfo($image, PATHINFO_EXTENSION));
-	$extension_valide = array('png,', 'jpg', 'jpeg');
+	$extension_valide = array('png', 'jpg', 'jpeg');
 
 	if(!in_array($extension,$extension_valide)){
 		
