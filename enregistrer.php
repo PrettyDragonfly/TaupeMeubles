@@ -101,7 +101,7 @@ if(isset($_POST["adressebdd"])){
         $adresse = NULL;
     }else{
         $adresse = mysqli_real_escape_string($mysqli,$_POST["adressebdd"]);
-        if(!preg_match("/^[a-zA-Z'\- ]+$/",$_POST["adressebdd"])){
+        if(!preg_match("/^[a-zA-Z0-9'\- ]+$/",$_POST["adressebdd"])){
             $return["Adresse"] = "L'adresse n'est pas valide";
             $adresse = NULL;
         }
