@@ -1,10 +1,15 @@
 <?php
 	$file_result = '';
-    var_dump($_POST);
-    var_dump($_FILES);
-	if($_FILES['file']['error']>0 && (!preg_match("/.jpg$/",$_FILES['file']['name']) || !preg_match("/.png$/",$_FILES['file']['name']) || !preg_match("/.bmp$/",$_FILES['file']['name']) || !preg_match("/.jpeg$/",$_FILES['file']['name']))){
+
+	$image = $_FILES['file']['name'];
+	$extension = strtolower(pathinfo($image, PATHINFO_EXTENSION));
+	$extension_valide = array('png,', 'jpg', 'jpeg');
+
+	if(!in_array($extension,$extension_valide)){
 		
 		$file_result = 'Error';
+
+		echo "Fichier non autorisé";
 		
 	}else{
 		$file_result = 'images/meubles/'.$_FILES['file']['name'];
