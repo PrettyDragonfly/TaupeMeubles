@@ -4,36 +4,39 @@
 	$image = $_FILES['file']['name'];
 	$extension = strtolower(pathinfo($image, PATHINFO_EXTENSION));
 	$extension_valide = array('png', 'jpg', 'jpeg');
-
-	if(!in_array($extension,$extension_valide)){
+	
+	$test=false;
+	if(substr_count($_FILES['file']['name'],".")>1){
+		$test=true;
+	}	
+	if(!in_array($extension,$extension_valide) || $test===true){
 		
 		$file_result = 'Error';
 
-		echo "Fichier non autorisé";
+		echo "Fichier non autorisÃ©";
 		
 	}else{
 		$file_result = 'images/meubles/'.$_FILES['file']['name'];
-		move_uploaded_file($_FILES['file']['tmp_name'],'../'.$file_result);
-		
+		$res=move_uploaded_file($_FILES['file']['tmp_name'],'../'.$file_result);	
 		include("../Parametres.php");
 		include("../Fonctions.inc.php");
 		
 
-		$mysqli=mysqli_connect($host,$user,$pass) or die("Problème de création de la base :".mysqli_error());
-		mysqli_select_db($mysqli,$base) or die("Impossible de sélectionner la base : $base");
+		$mysqli=mysqli_connect($host,$user,$pass) or die("ProblÃ¨me de crÃ©ation de la base :".mysqli_error());
+		mysqli_select_db($mysqli,$base) or die("Impossible de sÃ©lectionner la base : $base");
 
 
 		if(isset($_POST["libelle"]) && isset($_POST["prix"]) && isset($_POST["descriptif"])){
             //var_dump($_POST);
 			$ok = true;
-			if(!preg_match('/^([A-Za-z]{0,80}$)/', $_POST["libelle"])){
+			if(!preg_match('/^([A-Za-z ]{0,80}$)/', $_POST["libelle"])){
 				$ok = false;
 			}
 		
 			if(!preg_match('/^([0-9]+$)/', $_POST["prix"])){
 				$ok = false;
 			}
-			if(!preg_match("/^[a-zA-Z]+$/",$_POST["descriptif"])){
+			if(!preg_match("/^[a-zA-Z ]+$/",$_POST["descriptif"])){
 				$ok = false;
 			}
 			
@@ -57,7 +60,7 @@
 
                 query($mysqli,'insert into appartient (id_prod,id_rub) values ((select max(id_prod) from produits),(select id_rub from rubrique where libelle_rub = \''.$rubrique.'\'))');
 
-                echo "Enregistrement réussi";
+                echo "Enregistrement rÃ©ussi";
 			}
 			else
 			{
